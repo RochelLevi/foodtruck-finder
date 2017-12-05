@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :reviews
   resources :schedules
   resources :trucks
-  resources :users
+  resources :users, only:[:show, :edit, :create]
+  get '/signup', to: 'users#new', as: 'signup'
 end
