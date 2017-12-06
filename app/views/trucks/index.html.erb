@@ -1,6 +1,22 @@
-<%= form_tag('/trucks', method: 'get') do %>
+<div class="">
+  <%= form_tag('/trucks', method: 'get') do %>
     <%= label_tag 'Zip Code' %>
-    <%= text_field_tag 'zip', current_user.zip %>
+    <%= text_field_tag 'zip' %>
 
     <%= submit_tag 'search' %>
   <% end %>
+</div>
+
+<div class="map">
+  <img src=<%= @url %> alt="">
+</div>
+
+<% @trucks.each_with_index do |tr, i| %>
+  <div class="">
+    <%= "#{i+1}. " %>
+    <%= link_to tr.name, truck_path(tr) %>
+    <%= tr.location.street_address %>
+    <%= tr.rating %>
+    <%= tr.category.name %>
+  </div>
+<% end %>

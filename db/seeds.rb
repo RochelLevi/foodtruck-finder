@@ -18,7 +18,7 @@ loc2 = Location.create(street_address: "3105 Astoria Blvd S", city: "Astoria", s
 
 loc3 = Location.create(street_address: "11811 84th Avenue", city: "Kew Gardens", state: "NY", zip: "11415", neighborhood_id: neighborhood_2.id)
 
-loc4 = Location.create(street_address: "Columbus Circle", city: "New York", state: "NY", zip: "10020", neighborhood_id: neighborhood_1.id)
+loc4 = Location.create(street_address: "Columbus Circle", city: "New York", state: "NY", zip: "10019", neighborhood_id: neighborhood_1.id)
 
 loc5 = Location.create(street_address: "Bryant Park", city: "New York", state: "NY", zip: "10018", neighborhood_id: neighborhood_1.id)
 
@@ -32,8 +32,8 @@ cat2 = Category.create(name: "Jamaican")
 cat3 = Category.create(name: "Mexican")
 cat3 = Category.create(name: "Juice")
 
-truck1 = Truck.create(name: "The Halal Guys", category_id: cat1.id)
-truck2 = Truck.create(name: "Jus by Julie", category_id: cat2.id)
+truck1 = Truck.create(name: "The Halal Guys", category_id: cat1.id, location_id: loc1.id)
+truck2 = Truck.create(name: "Jus by Julie", category_id: cat2.id, location_id: loc4.id)
 
 item1 = Item.create(name:"Beef Over Rice", price: 11, truck_id: truck1.id )
 item2 = Item.create(name:"Chicken and Beef Combo over Rice", price: 12, truck_id: truck1.id )

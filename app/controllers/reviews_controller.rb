@@ -15,6 +15,8 @@ class ReviewsController < ApplicationController
       @review.save
       redirect_to truck_path(@review.truck)
     else
+      # flash.delete(:error)
+      flash[:notice] = "You've already written a review for this cart"
       render :new
     end
 
