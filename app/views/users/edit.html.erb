@@ -21,6 +21,7 @@
   <%= f.label "Password Confirmation*" %>:
   <%= f.password_field :password_confirmation %><br />
 
+  <h3>Update your address</h3>
   <%= f.fields_for :location do |addr| %>
     <%= addr.label :street_address %>:
     <%= addr.text_field :street_address %><br>
