@@ -6,21 +6,45 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
+
+    <!-- Compiled and minified JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      window.onload = function(){
+        if (GBrowserIsCompatible()) {
+            // Init the map
+            var map = new GMap2(document.getElementById('map'));
+            map.setCenter(new GLatLng(59.5, 14.0), 6);
+        }
+      }
+    </script>
+
   </head>
 
   <body>
 
-    <nav>
-      <% if logged_in? %>
-        <%= link_to "Sign Out", signout_path, method: :delete %>
-        <%= link_to "My Profile", user_path(session[:user_id]), method: :get %>
-        <%= link_to "Search Foodtrucks", trucks_path %>
-      <% else %>
-        <%= link_to "Sign in", signin_path %>
-      <% end %>
-    </nav>
+    <div class="nav">
+      <nav>
+        <% if logged_in? %>
+          <%= link_to "Sign Out", signout_path, method: :delete %>
+          <%= link_to "My Profile", user_path(session[:user_id]), method: :get %>
+          <%= link_to "Search Foodtrucks", trucks_path %>
+        <% else %>
+          <%= link_to "Sign in", signin_path %>
+        <% end %>
+      </nav>
+    </div>
 
-    <div class="">
+    <div class="container">
       <p>
         <% flash.each do |key, value| %>
           <em><%= value %></em>
@@ -28,6 +52,8 @@
       </p>
     </div>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def new
-    byebug
+    # byebug
     # session.delete(:user_id)
     @user = User.new
     @user.build_location
