@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :schedules
   resources :trucks
-  resources :users, only:[:show, :edit, :create]
+  resources :users, only:[:show, :edit, :create, :update, :destroy]
   get '/signup', to: 'users#new', as: 'signup'
   get "/signin", to: "sessions#new", as: "signin"
   post "/sessions", to: "sessions#create", as: "sessions"

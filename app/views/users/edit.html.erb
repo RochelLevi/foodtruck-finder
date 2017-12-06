@@ -1,0 +1,42 @@
+<h1>Update your profile</h1>
+
+<p>* Indicates Required Field</p>
+
+<%= form_for @user do |f| %>
+  <%= f.label "First Name" %>:
+  <%= f.text_field :f_name %><br />
+
+  <%= f.label "Last Name" %>:
+  <%= f.text_field :l_name %><br />
+
+  <%= f.label "Username*" %>:
+  <%= f.text_field :username %><br />
+
+  <%= f.label "Email*" %>:
+  <%= f.text_field :email %><br />
+
+  <%= f.label "Password*" %>:
+  <%= f.password_field :password %><br />
+
+  <%= f.label "Password Confirmation*" %>:
+  <%= f.password_field :password_confirmation %><br />
+
+  <%= f.fields_for :location do |addr| %>
+    <%= addr.label :street_address %>:
+    <%= addr.text_field :street_address %><br>
+
+    <%= addr.label :city %>:
+    <%= addr.text_field :city %><br>
+
+    <%= addr.label :state %>:
+    <%= addr.text_field :state %><br>
+
+    <%= addr.label :zip %>:
+    <%= addr.text_field :zip %><br>
+
+    <%= addr.label :neighborhood %>:
+    <%= addr.collection_select(:neighborhood_id, Neighborhood.all, :id, :name, include_blank: '') %><br>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

@@ -5,14 +5,13 @@ class SessionsController < ApplicationController
   def new
   end
 
-
   def create
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       # you are who you say you are
 
       session[:user_id] = user.id
-      flash[:message] = "Welcome #{user.name}"
+      # flash[:message] = "Welcome #{user.full_name}"
       redirect_to user_path(user)
     else
 
@@ -22,7 +21,6 @@ class SessionsController < ApplicationController
 
     end
   end
-
 
   def destroy
     session[:user_id] = nil

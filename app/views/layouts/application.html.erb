@@ -10,16 +10,21 @@
 
   <body>
 
-    <% if logged_in? %>
-      <%= link_to "Sign Out", signout_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in", signin_path %>
-    <% end %>
+    <nav>
+      <% if logged_in? %>
+        <%= link_to "Sign Out", signout_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", signin_path %>
+      <% end %>
+    </nav>
 
-
-    <% flash.each do |key, value| %>
-      <em><%= value %></em>
-    <% end %>
+    <div class="">
+      <p>
+        <% flash.each do |key, value| %>
+          <em><%= value %></em>
+        <% end %>
+      </p>
+    </div>
 
     <%= yield %>
   </body>
