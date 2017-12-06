@@ -1,17 +1,42 @@
 <h1><%= @truck.name %></h1>
 <h3><%= @truck.category.name %></h3>
-<h3><%= @truck.rating %></h3>
+<h3>Rating: <%= @truck.rating %></h3>
+
+
 
 <h3>Menu:</h3>
-<% @truck.items.each do |item| %>
-  <%= item.name %>
-  <%= "$#{item.price}" %><br>
+<div class="">
+  <table style="border: 1px solid black; width:25%; align:left">
+      <tr>
+        <th align="left">Menu items</th>
+        <th align="left">Price</th>
+      </tr>
+    <% @truck.items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td>$<%= item.price %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+
+<% if Favorite.find_by(user_id: current_user.id, truck_id: @truck.id) %>
+  <%= form_tag favorite_path(@truck), method: 'delete' do %>
+    <%= submit_tag value="Remove From Favorites" %>
+    <% end %>
+<% else %>
+  <%= form_tag favorites_path do %>
+    <%= submit_tag value="Add to Favorites" %>
+  <% end %>
 <% end %>
 
 
-<form method="get" action="/reviews/new" >
-  <input type="submit" value="Write a Review">
-</form>
+<% if !Review.find_by(user_id: current_user.id, truck_id: @truck.id) %>
+  <form method="get" action="/reviews/new" >
+    <input type="submit" value="Write a Review">
+  </form>
+<% end %>
 
 <% if @truck.reviews.empty? %>
 
@@ -20,10 +45,15 @@
 <% else %>
 
   <h3>Reviews</h3>
-  <% @truck.reviews.all do |review| %>
-    <h4><% review.title %></h4>
-    <h4><% review.user.username %></h4>
-    <p><% review.content %></p>
+  <% @truck.reviews.each do |review| %>
+    <div class="review">
+      <h5><%= review.title %></h5>
+      <h6><%= review.user.username %></h6>
+      <p><%= review.content %></p>
+    </div>
   <% end %>
+
+
+
 
 <% end %>
