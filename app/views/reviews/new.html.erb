@@ -1,28 +1,28 @@
-<h1>Your Review Helps Others!</h1>
+<h1><%= @truck.name %></h1>
 
-<%= form_tag controller: "reviews", action: "create", method: "post" do %>
+<%= form_for @review do |f| %>
 
-<div>
-  <%= label_tag :title %><br>
-  <%= text_field_tag :title %><br>
-  <br>
-</div>
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <br>
+  </div>
 
-<div>
-  <%= label_tag :content %><br>
-  <%= text_area_tag :content %><br>
-  <br>
-</div>
+  <div>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %><br>
+    <br>
+  </div>
 
-<div>
-  <%= label_tag :rating %><br>
-  <%= radio_button_tag :rating, 1 %>
-  <%= radio_button_tag :rating, 2 %>
-  <%= radio_button_tag :rating, 3 %>
-  <%= radio_button_tag :rating, 4 %>
-  <%= radio_button_tag :rating, 5 %>
-</div>
+  <div>
+    <%= f.label :rating %><br>
+    <%= f.radio_button :rating, 1 %>
+    <%= f.radio_button :rating, 2 %>
+    <%= f.radio_button :rating, 3 %>
+    <%= f.radio_button :rating, 4 %>
+    <%= f.radio_button :rating, 5 %>
+  </div>
 
-<%= submit_tag 'Post Review' %>
+  <%= f.submit 'Post Review' %>
 
 <% end %>

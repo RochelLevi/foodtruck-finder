@@ -1,0 +1,29 @@
+<h1><%= @truck.name %></h1>
+<h3><%= @truck.category.name %></h3>
+<h3><%= @truck.rating %></h3>
+
+<h3>Menu:</h3>
+<% @truck.items.each do |item| %>
+  <%= item.name %>
+  <%= "$#{item.price}" %><br>
+<% end %>
+
+
+<form method="get" action="/reviews/new" >
+  <input type="submit" value="Write a Review">
+</form>
+
+<% if @truck.reviews.empty? %>
+
+  <h4>No reviews yet. Be the first to write a review!</h4>
+
+<% else %>
+
+  <h3>Reviews</h3>
+  <% @truck.reviews.all do |review| %>
+    <h4><% review.title %></h4>
+    <h4><% review.user.username %></h4>
+    <p><% review.content %></p>
+  <% end %>
+
+<% end %>

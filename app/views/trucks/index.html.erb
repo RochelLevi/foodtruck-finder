@@ -1,0 +1,6 @@
+<%= form_tag('/trucks', method: 'get') do %>
+    <%= label_tag 'Zip Code' %>
+    <%= text_field_tag 'zip', current_user.zip %>
+
+    <%= submit_tag 'search' %>
+  <% end %>
