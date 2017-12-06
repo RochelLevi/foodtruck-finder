@@ -13,10 +13,11 @@
     <nav>
       <% if logged_in? %>
         <%= link_to "Sign Out", signout_path, method: :delete %>
+        <%= link_to "My Profile", user_path(session[:user_id]), method: :get %>
+        <%= link_to "Search Foodtrucks", trucks_path %>
       <% else %>
         <%= link_to "Sign in", signin_path %>
       <% end %>
-        <%= link_to "Search Foodtrucks", trucks_path %>
     </nav>
 
     <div class="">

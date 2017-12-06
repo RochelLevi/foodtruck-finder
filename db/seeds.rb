@@ -8,6 +8,25 @@ Item.destroy_all
 Neighborhood.destroy_all
 Category.destroy_all
 
+neighborhood_1 = Neighborhood.create(name: "Midtown")
+neighborhood_2 = Neighborhood.create(name: "Jamaica")
+neighborhood_3 = Neighborhood.create(name: "Astoria")
+
+loc1 = Location.create(street_address: "300 West 55th Street", city: "New York", state: "NY", zip: "10019", neighborhood_id: neighborhood_1.id)
+
+loc2 = Location.create(street_address: "3105 Astoria Blvd S", city: "Astoria", state: "NY", zip: "11101", neighborhood_id: neighborhood_3.id)
+
+loc3 = Location.create(street_address: "11811 84th Avenue", city: "Kew Gardens", state: "NY", zip: "11415", neighborhood_id: neighborhood_2.id)
+
+loc4 = Location.create(street_address: "Columbus Circle", city: "New York", state: "NY", zip: "10020", neighborhood_id: neighborhood_1.id)
+
+loc5 = Location.create(street_address: "Bryant Park", city: "New York", state: "NY", zip: "10018", neighborhood_id: neighborhood_1.id)
+
+priyam = User.create(f_name: "Priyam", l_name: "Sarma", email: "priyam.sarma@gmail.com", username: "psarma89", password: "priyam", password_confirmation: "priyam", location_id: loc1.id)
+
+rochel = User.create(f_name: "Rochel", l_name: "Levi", email: "rochel.levi@gmail.com", username: "rlevi96", password: "rochel", password_confirmation: "rochel", location_id: loc2.id)
+
+
 cat1 = Category.create(name: "Halal")
 cat2 = Category.create(name: "Jamaican")
 cat3 = Category.create(name: "Mexican")
