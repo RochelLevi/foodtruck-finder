@@ -1,0 +1,23 @@
+<p><%= button_to "Delete User", { action: "destroy", id: @user.id }, method: :delete, data: { confirm: "Delete User?" } %></p>
+<p><%= button_to "Update User", { action: "edit", id: @user.id }, method: :get %></p>
+
+<h1>Welcome <%= @user.full_name%>!</h1>
+
+<h3>You're Favorite Trucks</h3>
+
+<div class="">
+  <table style="border: 1px solid black; width:25%; align:left">
+      <tr>
+        <th align="left">Truck</th>
+        <th align="left">Rating</th>
+        <th align="left">Category</th>
+      </tr>
+    <% @user.trucks.each do |truck| %>
+      <tr>
+        <td><%= link_to truck.name, truck_path(truck)%></td>
+        <td><%= @user.get_rating(truck)%></td>
+        <td><%= truck.category.name%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

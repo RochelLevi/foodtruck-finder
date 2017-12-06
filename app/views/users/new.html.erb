@@ -1,37 +1,44 @@
 <h1>Welcome!</h1>
 <h2>Please provide some information to Create a User!</h2>
 
+<p>* Indicates Required Field</p>
+
 <%= form_for @user do |f| %>
-  <%= f.label :first_name %>:
+  <%= f.label "First Name" %>:
   <%= f.text_field :f_name %><br />
 
-  <%= f.label :last_name %>:
+  <%= f.label "Last Name" %>:
   <%= f.text_field :l_name %><br />
 
-  <%= f.label :email %>:
+  <%= f.label "Username*" %>:
+  <%= f.text_field :username %><br />
+
+  <%= f.label "Email*" %>:
   <%= f.text_field :email %><br />
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.label "Password*" %>:
+  <%= f.password_field :password %><br />
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.label "Password Confirmation*" %>:
+  <%= f.password_field :password_confirmation %><br />
+
+  <h3>Provide an address</h3>
 
   <%= f.fields_for :location do |addr| %>
-    <%= addr.label :street_address %>
+    <%= addr.label :street_address %>:
     <%= addr.text_field :street_address %><br>
 
-    <%= addr.label :city %>
+    <%= addr.label :city %>:
     <%= addr.text_field :city %><br>
 
-    <%= addr.label :state %>
+    <%= addr.label :state %>:
     <%= addr.text_field :state %><br>
 
-    <%= addr.label :zip %>
+    <%= addr.label :zip %>:
     <%= addr.text_field :zip %><br>
 
-    <%= addr.label :neighborhood %>
-    <%= addr.text_field :neighborhood_id %><br>
+    <%= addr.label :neighborhood %>:
+    <%= addr.collection_select(:neighborhood_id, Neighborhood.all, :id, :name, include_blank: '') %><br>
   <% end %>
 
   <%= f.submit %>

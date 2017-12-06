@@ -3,27 +3,63 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def new
+    # byebug
     @user = User.new
     @user.build_location
   end
 
   def create
-    @user = User.new(users_params(:f_name, :l_name, :username, :password, :email))
+    @user = User.new(users_params(:f_name, :l_name, :username, :password, :password_confirmation, :email, location_attributes: [
+      :street_address,
+      :city,
+      :state,
+      :zip,
+      :neighborhood_id
+    ]))
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
+      flash.delete(:notice)
       redirect_to user_path(@user)
     else
-      render 'new'
+      flash[:notice] = @user.errors.full_messages[0]
+      render :new
     end
   end
 
   def show
+    # byebug
     @user = User.find(params[:id])
   end
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(users_params(:f_name, :l_name, :username, :password, :password_confirmation, :email, location_attributes: [
+      :street_address,
+      :city,
+      :state,
+      :zip,
+      :neighborhood_id
+    ]))
+    if @user.valid?
+      @user.save
+      flash.delete(:notice)
+      redirect_to user_path(@user)
+    else
+      flash[:notice] = @user.errors.full_messages[0]
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.cleanup
+    @user.destroy
+    redirect_to signout_path
   end
 
   private
