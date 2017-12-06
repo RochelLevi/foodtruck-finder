@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def new
-    # byebug
+    byebug
+    # session.delete(:user_id)
     @user = User.new
     @user.build_location
   end
@@ -59,7 +60,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.cleanup
     @user.destroy
-    redirect_to signout_path
+    # Make this better
+    session.delete(:user_id)
+    redirect_to signin_path
   end
 
   private

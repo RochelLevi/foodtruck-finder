@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session.delete(:user_id)
     redirect_to signin_path
   end
 

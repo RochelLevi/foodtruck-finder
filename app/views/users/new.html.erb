@@ -1,4 +1,4 @@
-<h1>Welcome!</h1>
+<h1>Welcome to Food Truck Tracker!</h1>
 <h2>Please provide some information to Create a User!</h2>
 
 <p>* Indicates Required Field</p>
@@ -22,8 +22,7 @@
   <%= f.label "Password Confirmation*" %>:
   <%= f.password_field :password_confirmation %><br />
 
-  <h3>Provide an address</h3>
-
+  <h3>Fill out a Location</h3>
   <%= f.fields_for :location do |addr| %>
     <%= addr.label :street_address %>:
     <%= addr.text_field :street_address %><br>
