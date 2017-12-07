@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FoodtruckFinder</title>
+    <title>FoodTruckTracker</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,45 +15,70 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript">
-      window.onload = function(){
-        if (GBrowserIsCompatible()) {
-            // Init the map
-            var map = new GMap2(document.getElementById('map'));
-            map.setCenter(new GLatLng(59.5, 14.0), 6);
-        }
-      }
-    </script>
-
   </head>
 
   <body>
 
-    <div class="nav">
-      <nav>
-        <% if logged_in? %>
-          <%= link_to "Sign Out", signout_path, method: :delete %>
-          <%= link_to "My Profile", user_path(session[:user_id]), method: :get %>
-          <%= link_to "Search Foodtrucks", trucks_path %>
-        <% else %>
-          <%= link_to "Sign in", signin_path %>
-        <% end %>
-      </nav>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Food Truck Tracker</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <% if logged_in? %>
+              <li>
+                <a data-method="delete" href=<%="#{signout_path}"%>><span class="glyphicon glyphicon-log-out"></span> Sign Out</a>
+              </li>
+
+              <li>
+                <a href=<%="#{user_path(session[:user_id])}"%>><span class="glyphicon glyphicon-log-out"></span> My Profile</a>
+              </li>
+
+              <li>
+                <a href=<%="#{trucks_path}"%>><span class="glyphicon glyphicon-search"></span> Search Food Trucks</a>
+              </li>
+              <!-- <li><%= link_to "My Profile", user_path(session[:user_id]), method: :get %></li> -->
+              <!-- <li><%= link_to "Search Foodtrucks", trucks_path %></li> -->
+            <% else %>
+              <li>
+                <a href=<%="#{signin_path}"%>><span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+              </li>
+
+              <li>
+                <a href=<%="#{signup_path}"%>><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <p>
+          <% flash.each do |key, value| %>
+            <em><%= value %></em>
+          <% end %>
+        </p>
+      </div>
     </div>
 
     <div class="container">
-      <p>
-        <% flash.each do |key, value| %>
-          <em><%= value %></em>
-        <% end %>
-      </p>
+      <div class="row">
+        <%= yield %>
+      </div>
     </div>
 
-    <div class="container">
-      <%= yield %>
-    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
   </body>
 </html>
