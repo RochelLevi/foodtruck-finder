@@ -1,8 +1,8 @@
 User.all
 Truck.destroy_all
 Location.destroy_all
-Review.destroy_all
-Favorite.destroy_all
+# Review.destroy_all
+# Favorite.destroy_all
 Schedule.destroy_all
 Item.destroy_all
 Neighborhood.destroy_all

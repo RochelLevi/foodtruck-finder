@@ -14,12 +14,13 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/stylesheets/application.css">
 
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-light" style="background-color: #8e2222">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -37,7 +38,7 @@
               </li>
 
               <li>
-                <a href=<%="#{user_path(session[:user_id])}"%>><span class="glyphicon glyphicon-log-out"></span> My Profile</a>
+                <a href=<%="#{user_path(session[:user_id])}"%>><span class="glyphicon glyphicon-user"></span> My Profile</a>
               </li>
 
               <li>
@@ -70,9 +71,7 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
 
     <!-- Compiled and minified JavaScript -->
