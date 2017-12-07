@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
   # validates_email_format_of :email
   validates_format_of :email, :with => /@/
+  validates :username, format: {with: /\A[a-zA-Z0-9]+\Z/}
 
   has_secure_password
   accepts_nested_attributes_for :location
@@ -27,14 +28,6 @@ class User < ApplicationRecord
     Favorite.where("user_id = ?", self.id).destroy_all
     Review.where("user_id = ?", self.id).destroy_all
     Location.where("id = ?", self.location_id).destroy_all
-  end
-
-  def slug
-    self.username
-  end
-
-  def find_by_slug(slug)
-    User.find_by(username: slug)
   end
 
 end
