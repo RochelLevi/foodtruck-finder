@@ -17,8 +17,7 @@ class UsersController < ApplicationController
       :zip,
       :neighborhood_id
     ]))
-    if @user.valid?
-      @user.save
+    if @user.save
       session[:user_id] = @user.id
       flash.delete(:notice)
       redirect_to user_path(@user)
@@ -46,8 +45,7 @@ class UsersController < ApplicationController
       :zip,
       :neighborhood_id
     ]))
-    if @user.valid?
-      @user.save
+    if @user.save
       flash.delete(:notice)
       redirect_to user_path(@user)
     else
