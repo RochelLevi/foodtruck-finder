@@ -7,6 +7,7 @@ end
 
 # gem 'validates_email_format_of'
 # gem 'bootstrap-sass', '~> 3.3.7'
+# gem 'bootstrap_form'
 gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

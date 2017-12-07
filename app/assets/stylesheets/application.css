@@ -14,31 +14,48 @@
  *= require_self
  */
 
- .nav.navbar-nav li a {
-    color: #fff;
-  }
+.nav.navbar-nav li a {
+  color: #fff;
+}
 
 .navbar-header a {
-   color: #fff;
- }
+  color: #fff;
+}
 
- .nav.navbar-nav a:hover {
+.nav.navbar-nav a:hover {
   color: #8e2222;
- }
+}
 
- .navbar-header a:hover {
-    color: #fff;
-  }
+.navbar-header a:hover {
+  color: #fff;
+}
 
-.theme-background, div.panel-heading {background-color:#8e2222;}
+.theme-background {background-color:#8e2222;}
 .white {color:#ffffff;}
 
 .lib-img-show{
   padding-top: 5px;
   padding-bottom: 5px;
-
 }
 
 .checked {
     color: orange;
+}
+
+.users-new, .users-edit {
+  text-align: center;
+}
+
+form input[type=text], form input[type=password] {
+  width: 100%;
+}
+
+.error-div {
+  text-align: center;
+  color: red;
+  text-decoration: underline;
+  font-size: 200%;
+}
+.user-show-btn {
+  float: right;
 }

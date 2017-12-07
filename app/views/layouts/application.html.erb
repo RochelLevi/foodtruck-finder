@@ -18,9 +18,9 @@
 
   </head>
 
-  <body>
+  <body >
 
-    <nav class="navbar navbar-light" style="background-color: #8e2222">
+    <nav class="navbar navbar-light navbar-static-top" style="background-color: #8e2222">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -60,13 +60,15 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <p>
-          <% flash.each do |key, value| %>
-            <em><%= value %></em>
-          <% end %>
-        </p>
+    <div class="container">
+      <div class="row vertical-offset-100">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="error-div">
+              <% flash.each do |key, value| %>
+                <em><%= value %></em>
+              <% end %>
+          </div>
+        </div>
       </div>
     </div>
 

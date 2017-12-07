@@ -5,12 +5,14 @@ class User < ApplicationRecord
   has_many :schedules
   belongs_to :location
 
-  validates :username, :email, uniqueness: true
+  validates :username, uniqueness: true
+  validates :username, format: {with: /\A[a-zA-Z0-9]+\Z/}
+  validates :email, uniqueness: true
   validates :username, :email, :f_name, :l_name, presence: true
   validates :password, length: { minimum: 6 }
   # validates_email_format_of :email
   validates_format_of :email, :with => /@/
-  validates :username, format: {with: /\A[a-zA-Z0-9]+\Z/}
+
 
   has_secure_password
   accepts_nested_attributes_for :location
