@@ -13,6 +13,7 @@
 
 <% @trucks.each_with_index do |tr, i| %>
   <div class="">
+    <img src="<%= "#{tr.img_url}" %>" alt="" style="width:150px;height:150px;">
     <%= "#{i+1}. " %>
     <%= link_to tr.name, truck_path(tr) %>
     <%= tr.location.street_address %>

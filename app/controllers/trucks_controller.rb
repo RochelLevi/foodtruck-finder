@@ -2,12 +2,16 @@ class TrucksController < ApplicationController
 
   def index
     @user = current_user
-    if !params[:zip]
-      @trucks = Truck.all
-    else
+    @trucks = Truck.trucks_by_zip(params[:zip])
+    if params[:zip]
       @url = Truck.url_generator(params[:zip])
-      @trucks = Truck.all.select{|tr| tr.location.zip == params[:zip]}
     end
+    # if !params[:zip]
+    #   @trucks = Truck.all
+    # else
+    #   @url = Truck.url_generator(params[:zip])
+    #   @trucks = Truck.all.select{|tr| tr.location.zip == params[:zip]}
+    # end
   end
 
   # def new

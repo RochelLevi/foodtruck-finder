@@ -14,8 +14,19 @@ class Truck < ApplicationRecord
     end
   end
 
+  def self.trucks_by_zip(zip)
+    if zip
+      @trucks = Truck.all.select{|tr| tr.location.zip == zip}
+    else
+      @trucks = Truck.all
+    end
+    @trucks
+  end
+
+
   def self.url_generator(zip)
-    @trucks = Truck.all.select{|tr| tr.location.zip == zip}
+    # @trucks = Truck.all.select{|tr| tr.location.zip == zip}
+    @trucks = self.trucks_by_zip(zip)
     key = "AIzaSyBcQBWJhUdprvVfhh4CAmwY7ixtNbaQGvc"
     url = <<-URL
       https://maps.googleapis.com/maps/api/staticmap?center=#{zip}&zoom=14&size=450x450&maptype=roadmap&key=#{key}
