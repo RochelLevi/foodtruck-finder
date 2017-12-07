@@ -32,3 +32,13 @@
 
 .theme-background, div.panel-heading {background-color:#8e2222;}
 .white {color:#ffffff;}
+
+.lib-img-show{
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+.checked {
+    color: orange;
+}

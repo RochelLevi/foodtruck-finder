@@ -29,7 +29,7 @@ class Truck < ApplicationRecord
     @trucks = self.trucks_by_zip(zip)
     key = "AIzaSyBcQBWJhUdprvVfhh4CAmwY7ixtNbaQGvc"
     url = <<-URL
-      https://maps.googleapis.com/maps/api/staticmap?center=#{zip}&zoom=14&size=450x450&maptype=roadmap&key=#{key}
+      https://maps.googleapis.com/maps/api/staticmap?center=#{zip}&zoom=14&size=3000x300&maptype=roadmap&key=#{key}
     URL
 
     @trucks.each_with_index do |tr, i|

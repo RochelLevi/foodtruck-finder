@@ -1,3 +1,5 @@
+
+<%# search bar%>
 <div class="">
   <%= form_tag('/trucks', method: 'get') do %>
     <%= label_tag 'Zip Code' %>
@@ -7,17 +9,72 @@
   <% end %>
 </div>
 
-<div class="map">
-  <img src=<%= @url %> alt="">
-</div>
+<%# search results header%>
+<hgroup class="row mb20">
+		<h1>Search Results</h1>
+		<h2 class="lead"><%= @trucks.count %> food trucks were found in your area</h2>
+</hgroup>
 
-<% @trucks.each_with_index do |tr, i| %>
-  <div class="">
-    <img src="<%= "#{tr.img_url}" %>" alt="" style="width:150px;height:150px;">
-    <%= "#{i+1}. " %>
-    <%= link_to tr.name, truck_path(tr) %>
-    <%= tr.location.street_address %>
-    <%= tr.rating %>
-    <%= tr.category.name %>
+  <%# map %>
+  <div class="col-l-12 img-fluid" style="text-align: center;">
+        <img src=<%= @url %> alt="">
   </div>
-<% end %>
+
+  <br>
+  <br>
+<!--
+  <%# results list%>
+  <article class="row float-left">
+    <% @trucks.each_with_index do |tr, i| %>
+
+      <%# photo %>
+        <div class="col-md-3">
+          <a class="thumbnail"><img src="<%= "#{tr.img_url}" %>" alt="" ></a>
+        </div>
+
+      <%# info %>
+        <div class="col-md-2">
+          <ul class="meta-search">
+            <li><i></i> <span><%= "#{i+1}. " %></span></li>
+            <li><i></i> <span><%= link_to tr.name, truck_path(tr) %></span></li>
+            <li><i></i> <span><%= tr.location.street_address %></span></li>
+            <li><i></i> <span><%= tr.rating %></span></li>
+            <li><i></i> <span><%= tr.category.name %></span></li>
+          </ul>
+        </div>
+      <% end %>
+
+
+  </article>
+  <span class="clearfix borda"></span>
+</section> -->
+
+
+
+
+            <div class="row row-margin-bottom">
+
+            <% @trucks.each_with_index do |tr, i| %>
+              <div class="col-md-5 no-padding lib-item" data-category="view">
+                  <div class="lib-panel">
+                      <div class="row box-shadow">
+                          <div class="col-md-6">
+                              <a href="<%= truck_path(tr) %>"><img class="lib-img-show" src="<%= "#{tr.img_url}" %>" height="180" width="200"></a>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="lib-row lib-header">
+                                  <h5><%= "#{i+1}. " %><%= link_to tr.name, truck_path(tr) %></span></h5>
+                                  <div class="lib-header-seperator"></div>
+                              </div>
+                              <div class="lib-row lib-desc">
+                                <%= tr.location.street_address %><br>
+                                <%= tr.category.name %><br>
+                                <%= tr.rating %>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-1"></div>
+              <% end %>
+        </div>

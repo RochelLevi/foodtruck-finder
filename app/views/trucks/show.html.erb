@@ -2,28 +2,51 @@
 <div class="">
   <h1><%= @truck.name %></h1>
   <h3><%= @truck.category.name %></h3>
-  <h3>Rating: <%= @truck.rating %></h3>
-  <img src="<%= "#{@truck.img_url}" %>" alt="" style="width:800px;height:400px;">
+
+  <%# display rating %>
+  <% if @truck.rating %>
+    <h1 class="rating-num"><%= @truck.rating %></h1>
+      <div class="rating">
+        <% @truck.rating.round.times do %>
+          <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+        <% (5 - @truck.rating.round).times do %>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        <% end %>
+      </div>
+  <% end %>
+
+  <%# favorite/unfavorite buttton %>
+  <div class="favorite-button">
+    <% if Favorite.find_by(user_id: current_user.id, truck_id: @truck.id) %>
+      <%= form_tag favorite_path(@truck), method: 'delete' do %>
+      <button type="submit" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Unfavorite
+      </button>
+        <% end %>
+    <% else %>
+      <%= form_tag favorites_path do %>
+        <button type="submit" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+
+  <br>
+  <div class="" style='text-align: center;'>
+    <img src="<%= "#{@truck.img_url}" %>" alt="" style="width:900px;height:500px;">
+  </div>
+  <br>
+  <br>
   <h3><%= @truck.description %></h3>
 </div>
 
-<%# favorite/unfavorite buttton %>
-<div class="">
-  <% if Favorite.find_by(user_id: current_user.id, truck_id: @truck.id) %>
-    <%= form_tag favorite_path(@truck), method: 'delete' do %>
-      <%= submit_tag value="Remove From Favorites" %>
-      <% end %>
-  <% else %>
-    <%= form_tag favorites_path do %>
-      <%= submit_tag value="Add to Favorites" %>
-    <% end %>
-  <% end %>
-</div>
 
 <%# Menu %>
-<div class="">
+<div class="table">
   <h3>Menu:</h3>
-    <table style="border: 1px solid black; width:25%; align:left">
+    <table style="border: 1px solid black; width:50%; align:center">
         <tr>
           <th align="left">Menu items</th>
           <th align="left">Price</th>
@@ -49,6 +72,8 @@
 
 
 <%# Show all Reviews %>
+<br>
+<br>
 <div class="">
   <% if @truck.reviews.empty? %>
 
@@ -56,14 +81,26 @@
 
   <% else %>
 
-    <h3>Reviews</h3>
-    <% @truck.reviews.each do |review| %>
-      <div class="review">
-        <h5><%= review.title %></h5>
-        <h6><%= review.user.username %></h6>
-        <p><%= review.content %></p>
+  <div class="" style="text-align: center;"><h2>Reviews</h2></div>
+  <% @truck.reviews.each do |review| %>
+  <div class="reviews">
+    <div class="row blockquote review-item">
+      <div class="col-md-3 text-center">
+        <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+        <div class="caption">
+          <small>by <a href="#joe"><%= review.user.username %></a></small>
+        </div>
+
       </div>
-    <% end %>
+      <div class="col-md-9">
+        <h4><%= review.title %></h4>
+        <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+        <p class="review-text"><%= review.content %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
 </div>
 
 
