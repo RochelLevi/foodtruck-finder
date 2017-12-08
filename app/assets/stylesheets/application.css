@@ -50,14 +50,30 @@ form input[type=text], form input[type=password] {
   width: 100%;
 }
 
+form input[type=submit] {
+  background-color:#8e2222;
+  color:#ffffff;
+}
+
 .error-div {
   text-align: center;
-  color: red;
+  color: #8e2222;
   text-decoration: underline;
-  font-size: 200%;
+  font-size: 150%;
 }
+
 .user-show-btn {
+  min-width: 100px;
   float: right;
+}
+
+.review-title {
+  width: 50% !important;
+}
+
+.review-content {
+  width: 50%;
+  min-height: 150px;
 }
 
 .normal-input {

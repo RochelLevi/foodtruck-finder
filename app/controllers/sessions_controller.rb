@@ -6,19 +6,22 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:username])
+    user = User.user_exist(params[:username])
     if user && user.authenticate(params[:password])
       # you are who you say you are
 
       session[:user_id] = user.id
       # flash[:message] = "Welcome #{user.full_name}"
       redirect_to user_path(user)
-    else
+    elsif user == nil
 
+      # sign in failed
+      flash[:message] = "User Does not Exist. Please Sign Up."
+      redirect_to signup_path
+    else
       # sign in failed
       flash[:message] = "Wrong username and password"
       redirect_to signin_path
-
     end
   end
 

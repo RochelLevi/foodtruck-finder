@@ -13,7 +13,6 @@ class User < ApplicationRecord
   # validates_email_format_of :email
   validates_format_of :email, :with => /@/
 
-
   has_secure_password
   accepts_nested_attributes_for :location
 
@@ -30,6 +29,10 @@ class User < ApplicationRecord
     Favorite.where("user_id = ?", self.id).destroy_all
     Review.where("user_id = ?", self.id).destroy_all
     Location.where("id = ?", self.location_id).destroy_all
+  end
+
+  def self.user_exist(username)
+    User.find_by(username: username)
   end
 
 end

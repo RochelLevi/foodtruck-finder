@@ -21,11 +21,13 @@
       <tr>
         <td><%= link_to truck.name, truck_path(truck)%></td>
         <td>
-          <% @user.get_rating(truck).times do %>
-            <span class="glyphicon glyphicon-star"></span>
-          <% end %>
-          <% (5 - @user.get_rating(truck)).times do %>
-            <span class="glyphicon glyphicon-star-empty"></span>
+          <% if @user.get_rating(truck) != 0 %>
+            <% @user.get_rating(truck).times do %>
+              <span class="glyphicon glyphicon-star"></span>
+            <% end %>
+            <% (5 - @user.get_rating(truck)).times do %>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            <% end %>
           <% end %>
         </td>
         <td><%= truck.category.name%></td>
