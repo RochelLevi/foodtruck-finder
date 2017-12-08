@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post "/sessions", to: "sessions#create", as: "sessions"
   delete "/sessions", to: "sessions#destroy", as: "signout"
   post "/signup", to: 'users#create', as: "users"
+  get "/analytics", to: "sessions#index", as: "analytics"
   root "sessions#new"
 
 end
