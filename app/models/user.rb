@@ -35,4 +35,14 @@ class User < ApplicationRecord
     User.find_by(username: username)
   end
 
+  def self.how_many
+    "Food Truck Tracker has #{User.all.count} active users"
+  end
+
+  def self.most_reviews
+    user = User.all.max_by {|user| user.reviews.count}
+    total_reviews = user.reviews.count
+    "#{user.full_name} has the most reviews, with #{total_reviews} reviews"
+  end
+
 end
