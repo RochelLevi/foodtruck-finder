@@ -34,6 +34,7 @@
 <br>
 <br>
 
+<%# each truck details %>
 <div class="row row-margin-bottom">
 
   <% @trucks.each_with_index do |tr, i| %>
@@ -51,7 +52,26 @@
                     <div class="lib-row lib-desc">
                       <%= tr.location.street_address %><br>
                       <%= tr.category.name %><br>
-                      <%= tr.rating %>
+
+                      <%# rating %>
+                      <% if tr.rating %>
+                        <%= tr.rating %>
+                        -
+                        <% tr.rating.round.times do %>
+                          <span class="glyphicon glyphicon-star"></span>
+                        <% end %>
+                        <% (5 - tr.rating.round).times do %>
+                          <span class="glyphicon glyphicon-star-empty"></span>
+                        <% end %><br>
+                      <% end %>
+
+                      <%# pricey %>
+                      <% if tr.pricey %>
+                        <% tr.pricey.times do %>
+                          <span class="glyphicon glyphicon-bitcoin"></span>
+                        <% end %>
+                      <% end %>
+
                     </div>
                 </div>
             </div>

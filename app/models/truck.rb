@@ -14,6 +14,24 @@ class Truck < ApplicationRecord
     end
   end
 
+  def pricey
+    if self.items.empty?
+      nil
+    else
+      avg = self.items.average(:price)
+
+      if avg < 6
+        1
+      elsif avg < 10
+        2
+      elsif avg < 14
+        3
+      else
+        4
+      end
+    end
+  end
+
   def self.trucks_by_zip(zip)
     if zip
       @trucks = Truck.all.select{|tr| tr.location.zip == zip}

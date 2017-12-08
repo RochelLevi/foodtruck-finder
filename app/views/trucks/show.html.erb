@@ -6,46 +6,57 @@
 
   <%# display rating %>
   <% if @truck.rating %>
-    <h1 class="rating-num"><%= @truck.rating %></h1>
-      <div class="rating">
-        <% @truck.rating.round.times do %>
-          <span class="glyphicon glyphicon-star"></span>
-        <% end %>
-        <% (5 - @truck.rating.round).times do %>
-          <span class="glyphicon glyphicon-star-empty"></span>
-        <% end %>
-      </div>
+    <h3 class="rating-num">
+      <%= @truck.rating %> -
+      <% @truck.rating.round.times do %>
+        <span class="glyphicon glyphicon-star"></span>
+      <% end %>
+      <% (5 - @truck.rating.round).times do %>
+        <span class="glyphicon glyphicon-star-empty"></span>
+      <% end %>
+    </h3><br>
   <% end %>
 
+  <% if @truck.pricey %>
+    <% @truck.pricey.times do %>
+      <span class="glyphicon glyphicon-bitcoin"></span>
+    <% end %>
+  <% end %>
+
+  <h1>
+
+  </h1>
+
+  <br>
   <%# This row includes favorite and review buttons %>
   <div class="row">
+    <%# Review Button %>
+    <% if !Review.find_by(user_id: current_user.id, truck_id: @truck.id) %>
+      <div class="button col-md-2">
+          <form method="get" action="/reviews/new" >
+            <button type="submit" class="theme-background white btn-lg btn">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Write A Review
+            </button>
+          </form>
+      </div>
+    <% end %>
     <%# favorite/unfavorite buttton %>
-    <div class="favorite-button col-md-2 no-padding">
+    <div class="col-md-1">
       <% if Favorite.find_by(user_id: current_user.id, truck_id: @truck.id) %>
         <%= form_tag favorite_path(@truck), method: 'delete' do %>
-        <button type="submit" class="btn btn-default btn-lg">
+        <button type="submit" class="theme-background white btn-lg btn">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Unfavorite
         </button>
           <% end %>
       <% else %>
-        <%= form_tag favorites_path do %>
-          <button type="submit" class="btn btn-default btn-lg">
-            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
-          </button>
+      <%= form_tag favorites_path do %>
+        <button type="submit" class="theme-background white btn-lg btn">
+          <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+        </button>
         <% end %>
       <% end %>
     </div>
 
-    <%# Review Button %>
-    <div class="button col-md-2 no-padding">
-      <% if !Review.find_by(user_id: current_user.id, truck_id: @truck.id) %>
-        <form method="get" action="/reviews/new" >
-          <button type="submit" class="btn btn-default btn-lg theme-background white">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Write A Review
-          </button>
-        </form>
-      <% end %>
-    </div>
   </div><%# end buttons div %>
 
   <br>

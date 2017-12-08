@@ -1,5 +1,6 @@
 <h1><%= @truck.name %></h1>
 <br>
+
 <%= form_for @review do |f| %>
 
   <div>
@@ -26,15 +27,19 @@
       <input type="radio" id="myChoice1" name="review[rating]" value="1" />
     </label>
 
-    <input type="radio" id="myChoice2" name="review[rating]" value="2" />
+    <!-- <input type="radio" id="myChoice2" name="review[rating]" value="2" /> -->
 
-    <!-- <label for="myChoice2">2<br />
-      <input type="radio" id="myChoice2" name="myChoice" value="2" />
-    </label> -->
+    <label for="myChoice2">2<br />
+      <input type="radio" id="myChoice2" name="review[rating]" value="2" />
+    </label>
 
-    <input type="radio" id="myChoice3" name="review[rating]" value="3" />
+    <label for="myChoice3">3<br />
+      <input type="radio" id="myChoice3" name="review[rating]" value="3" />
+    </label>
 
-    <input type="radio" id="myChoice4" name="review[rating]" value="4" />
+    <label for="myChoice4">4<br />
+      <input type="radio" id="myChoice4" name="review[rating]" value="4" />
+    </label>
 
     <label for="myChoice1">5<br />
       <input type="radio" id="myChoice5" name="review[rating]" value="5" />
