@@ -28,7 +28,7 @@ class Truck < ApplicationRecord
   def self.zip_with_most_trucks
     #only returns first zip even if tied
     zips_array = Truck.all.collect{|tr| tr.location.zip}
-    zips_hash = zips.inject(Hash.new(0)){|zip_codes, zip| zip_codes[zip] += 1; zip_codes}
+    zips_hash = zips_array.inject(Hash.new(0)){|zip_codes, zip| zip_codes[zip] += 1; zip_codes}
     max_value = zips_hash.max_by{|k,v| v}
     max_key = zips_hash.key(max_value)
     "#{max_key} has the most foodtrucks with #{max_value} trucks!"

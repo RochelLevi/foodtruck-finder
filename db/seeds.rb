@@ -8,6 +8,7 @@ Item.destroy_all
 Neighborhood.destroy_all
 Category.destroy_all
 
+
 neighborhood_1 = Neighborhood.create(name: "Midtown")
 neighborhood_2 = Neighborhood.create(name: "Jamaica")
 neighborhood_3 = Neighborhood.create(name: "Astoria")
@@ -113,6 +114,19 @@ truck26 = Truck.create(name: "Gary's Steaks", category_id: cat20.id, location_id
 # truck34 = Truck.create(name: , category_id: cat3.id, location_id: loc20.id, img_url: )
 #
 
+Favorite.create(truck_id: truck2.id, user_id: mike.id )
+Favorite.create(truck_id: truck6.id, user_id: mike.id )
+Favorite.create(truck_id: truck7.id, user_id: mike.id )
+Favorite.create(truck_id: truck8.id, user_id: mike.id )
+Favorite.create(truck_id: truck9.id, user_id: mike.id )
+Favorite.create(truck_id: truck2.id, user_id: frankie.id )
+Favorite.create(truck_id: truck10.id, user_id: frankie.id )
+Favorite.create(truck_id: truck2.id, user_id: priyam.id )
+Favorite.create(truck_id: truck11.id, user_id: priyam.id )
+Favorite.create(truck_id: truck12.id, user_id: priyam.id )
+Favorite.create(truck_id: truck13.id, user_id: rochel.id )
+Favorite.create(truck_id: truck14.id, user_id: rochel.id )
+Favorite.create(truck_id: truck2.id, user_id: rochel.id )
 
 review1 = Review.create(title: "Not Great",  rating: 2, truck_id: truck2.id , user_id: mike.id, content: "Overpriced, and underwhelming. Juices are ill conceived and watered down with cheaper ingredients like rice milk (and less veg)muffins (though 100 calories) are so bland and flavorless. I make 100 cal yummies too, mine just don't taste like cardboard.")
 review2 = Review.create(title: "My Favorite",  rating: 5, truck_id: truck2.id , user_id: jazmin.id, content:"Choco-nana is amazing! This place has very quick service and always serves me with a smile. Will always return!")

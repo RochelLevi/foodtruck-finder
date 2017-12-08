@@ -42,7 +42,7 @@ class User < ApplicationRecord
   def self.most_reviews
     user = User.all.max_by {|user| user.reviews.count}
     total_reviews = user.reviews.count
-    "#{user.full_name} has the most reviews, with #{total_reviews} reviews"
+    "#{user.username} has written the most reviews, with #{total_reviews} reviews"
   end
 
 end
