@@ -1,11 +1,13 @@
 
 <%# search bar%>
-<div class="">
+<div class="normal-input">
   <%= form_tag('/trucks', method: 'get') do %>
     <%= label_tag 'Zip Code' %>
     <%= text_field_tag 'zip' %>
-
-    <%= submit_tag 'search' %>
+    <br>
+    <button type="submit" class="btn btn-default btn-sm theme-background white">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+    </button>
   <% end %>
 </div>
 

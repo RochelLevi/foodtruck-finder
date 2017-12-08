@@ -59,3 +59,7 @@ form input[type=text], form input[type=password] {
 .user-show-btn {
   float: right;
 }
+
+.normal-input {
+  width: 8%;
+}

@@ -29,15 +29,17 @@ class UsersController < ApplicationController
 
   def show
     # byebug
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
+    # @user = User.find(params[:id])
     @user.update(users_params(:f_name, :l_name, :username, :password, :password_confirmation, :email, location_attributes: [
       :street_address,
       :city,
@@ -55,7 +57,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
+    # @user = User.find(params[:id])
     @user.cleanup
     @user.destroy
     # Make this better
