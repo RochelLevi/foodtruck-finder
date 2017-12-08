@@ -1,24 +1,11 @@
-# README
+Food Truck Tracker - Module 2 Final Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App Description
 
-Things you may want to cover:
+Food Truck Tracker is a web application that help users find, review, and favorite their food trucks in the New York City area. Users can create a new account and find food trucks by a zip code. Our app will show the food trucks that have locations in their zip code. Users can look at the menu, overall rating and cost associated with each food truck. From here, they can favorite a food truck, write a review for the food truck, and see other users review for the food truck. 
 
-* Ruby version
+Contributors Guide
 
-* System dependencies
+This project is licensed under the MIT license. See LICENSE.txt for more details.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Contributors: Rochel Levi, Priyam Sarma
