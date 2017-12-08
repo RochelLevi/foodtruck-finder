@@ -2,9 +2,11 @@ class Truck < ApplicationRecord
   has_many :reviews
   has_many :items
   has_many :favorites
+  has_many :users, through: :favorites
   has_many :schedules
   belongs_to :category
   belongs_to :location
+
 
   def rating
     if self.reviews.empty?
@@ -12,6 +14,32 @@ class Truck < ApplicationRecord
     else
       self.reviews.average(:rating).round(1)
     end
+  end
+
+  def self.favorite
+    max_count = Truck.all.max_by{|truck| truck.users.count}.users.count
+    trucks = Truck.all.select{|truck| truck.users.count == max_count}
+    truck_names = trucks.collect{|truck| truck.name}.to_sentence
+    has_have = trucks.count > 1 ? "have" : "has"
+    it_them = trucks.count > 1 ? "them" : "it"
+    "#{truck_names} #{has_have} been saved to favorites by the most users, with #{max_count} users having favorited #{it_them}!"
+  end
+
+  def self.zip_with_most_trucks
+    #only returns first zip even if tied
+    zips_array = Truck.all.collect{|tr| tr.location.zip}
+    zips_hash = zips.inject(Hash.new(0)){|zip_codes, zip| zip_codes[zip] += 1; zip_codes}
+    max_value = zips_hash.max_by{|k,v| v}
+    max_key = zips_hash.key(max_value)
+    "#{max_key} has the most foodtrucks with #{max_value} trucks!"
+  end
+
+  def self.highest_rated
+    max_rating = Truck.all.max_by{|truck| truck.rating ? truck.rating : 0}.rating
+    trucks = Truck.all.select{|truck| truck.rating == max_rating}
+    truck_names = trucks.collect{|truck| truck.name}.to_sentence
+    has_have = trucks.count > 1 ? "have" : "has"
+    "#{truck_names} #{has_have} been rated highest by our users, with a rating of #{max_rating}!"
   end
 
   def pricey
