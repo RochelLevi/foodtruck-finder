@@ -62,11 +62,10 @@ class Truck < ApplicationRecord
 
   def self.trucks_by_zip(zip)
     if zip
-      @trucks = Truck.all.select{|tr| tr.location.zip == zip}
+      Truck.all.select{|tr| tr.location.zip == zip}
     else
-      @trucks = Truck.all
+      Truck.all
     end
-    @trucks
   end
 
 

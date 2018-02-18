@@ -24,12 +24,14 @@
   <hgroup class="row">
   		<h2 class="lead"><%= @trucks.count %> food trucks were found in your area</h2>
   </hgroup>
+
+  <div class="col-l-12 img-fluid" style="text-align: center;">
+        <img src=<%= @url %> alt="">
+  </div>
 <% end %>
 
 <%# map - only shows after search - otherise url is nil %>
-<div class="col-l-12 img-fluid" style="text-align: center;">
-      <img src=<%= @url %> alt="">
-</div>
+
 
 <br>
 <br>
